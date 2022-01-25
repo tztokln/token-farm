@@ -1,0 +1,113 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/elena/Desktop/defi_tutorial-starter-code/contracts/DaiToken.sol": {
+      "lastModificationDate": 1642989054343,
+      "contentHash": "a4e1bb60249b3fd7749b3bca8400d94d",
+      "sourceName": "contracts/DaiToken.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.7.3"
+      ],
+      "artifacts": [
+        "DaiToken"
+      ]
+    },
+    "/Users/elena/Desktop/defi_tutorial-starter-code/contracts/DappToken.sol": {
+      "lastModificationDate": 1642989060451,
+      "contentHash": "11af336cf17d45a4896b02c749020261",
+      "sourceName": "contracts/DappToken.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.7.3"
+      ],
+      "artifacts": [
+        "DappToken"
+      ]
+    },
+    "/Users/elena/Desktop/defi_tutorial-starter-code/contracts/TokenFarm.sol": {
+      "lastModificationDate": 1643054297505,
+      "contentHash": "a0a56b0a3fd169a410a55005c838d656",
+      "sourceName": "contracts/TokenFarm.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./DappToken.sol",
+        "./DaiToken.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.3"
+      ],
+      "artifacts": [
+        "TokenFarm"
+      ]
+    }
+  }
+}
