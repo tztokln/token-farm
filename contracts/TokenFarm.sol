@@ -25,27 +25,37 @@ contract TokenFarm {
         // Require amount greater than 0
         require(_amount > 0, "amount cannot be 0");
 
-        // console.log("stakeTokens from =>", msg.sender);
-        // console.log("stakeTokens to =>",  address(this) );
-        
         // transfer tokens to this contract (from/to/amount)
         daiToken.transferFrom(msg.sender, address(this), _amount);
+
         // Update the staking balance:
         stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
 
         // Add users to stakers array if they haven't staked already
-
         if (!hasStaked[msg.sender]) {
             stakers.push(msg.sender);
         }
 
         // update staking status
-
         isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
     }
 
-    //unstake tokens
+    // unstake tokens
 
     // Issuing tokens
+    function issueTokens() public {
+        // Only owner can call this function
+        require(msg.sender == owner, "caller must be the owner");
+
+        for(uint i=0; i<stakers.length; i++) {
+            address recipient = stakers[i];
+            uint balance = stakingBalance[recipient];
+
+            if ( balance > 0 ) {
+                 dappToken.transfer(recipient, balance);
+            }
+        }
+    }
+
 }

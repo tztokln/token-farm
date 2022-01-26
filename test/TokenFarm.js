@@ -24,7 +24,7 @@ describe("Token contract", function () {
         await dappToken.transfer(tokenFarm.address, '1000000000000000000000000')
 
         // // Send tokens to investor
-        await  daiToken.transfer(addr1.address, '100000000000000000000')
+        await daiToken.transfer(addr1.address, '100000000000000000000')
 
     });
 
@@ -56,7 +56,7 @@ describe("Token contract", function () {
     })
 
     describe(" Staking tokens", async () => {
-        it('rewards investors for staking tokens', async ()=> {
+        it('rewards investors for staking tokens', async () => {
             let result
             // check investor balance before staking
             result = await daiToken.balanceOf(addr1.address)
@@ -78,7 +78,19 @@ describe("Token contract", function () {
 
             result = await tokenFarm.isStaking(addr1.address)
             assert.equal(result.toString(), 'true', 'investor staking status correct after staking')
-      
+
+            // Issue tokens
+            await tokenFarm.connect(owner).issueTokens()
+
+            // Check balances after issuance
+            result = await dappToken.balanceOf(addr1.address)
+            assert.equal(result.toString(), tokens('100'), 'investor DApp Token wallet balance correct affter issuance')
+
+            // Ensure that only onwer can issue tokens
+            await expect(tokenFarm.connect(addr1).issueTokens()).to.be.reverted;
+            
+            // console.log("dai investor balance", await daiToken.balanceOf(addr1.address))
+            // console.log("dapp investor balance", await dappToken.balanceOf(addr1.address))
         })
     })
 

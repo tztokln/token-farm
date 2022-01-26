@@ -72,8 +72,8 @@
       ]
     },
     "/Users/elena/Desktop/defi_tutorial-starter-code/contracts/TokenFarm.sol": {
-      "lastModificationDate": 1643156567340,
-      "contentHash": "ec5f740177dffd44eaa24bd9d8579bc8",
+      "lastModificationDate": 1643157659209,
+      "contentHash": "7a96aec2a2bb93ea4faeb6865691fec4",
       "sourceName": "contracts/TokenFarm.sol",
       "solcConfig": {
         "version": "0.7.3",
