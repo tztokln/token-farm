@@ -4,6 +4,9 @@
 // When running the script with `hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
 const hre = require("hardhat");
+// const fs = require('fs')
+const fs = require("fs-extra");
+// import "hardhat/console.sol";
 
 
 async function main() {
@@ -12,7 +15,6 @@ async function main() {
     const daiToken = await DaiToken.deploy();
     await daiToken.deployed();
     console.log("daiToken deployed to:", daiToken.address);
-
     // Deploy Dapp Token
     const DappToken = await hre.ethers.getContractFactory("DappToken");
     const dappToken = await DappToken.deploy();
@@ -26,7 +28,6 @@ async function main() {
     console.log("tokenFarm deployed to:", tokenFarm.address);
 
     const accounts = await ethers.getSigners();
-      console.log("accounts[1]", accounts[1].address);
 
     // Transfer all tokens to TokenFarm (1 million)
     await dappToken.transfer(tokenFarm.address, '1000000000000000000000000')
@@ -34,15 +35,17 @@ async function main() {
     // Transfer 100 Mock DAI tokens to investor
     await daiToken.transfer(accounts[1].address, '100000000000000000000')
 
-    // for (const account of accounts) {
-    //   console.log(account.address);
-    // }
+    // copy contracts to src folder
+    await fs.copy('artifacts/contracts', 'src/contracts')
+    .then(() => console.log('success!'))
+    .catch(err => console.error(err))
 
 }
 
 
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+      process.exit(0)})
   .catch(error => {
     console.error(error);
     process.exit(1);
