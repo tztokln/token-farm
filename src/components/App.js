@@ -1,8 +1,35 @@
 import React, { Component } from 'react'
+import Web3 from 'web3'
+// import DaiToken from '../abis/DaiToken.json'
 import Navbar from './Navbar'
 import './App.css'
 
 class App extends Component {
+  async componentWillMount() {
+    await this.loadWeb3()
+    await this.loadBlockchainData()
+  }
+  async loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable()
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider)
+    }
+    else {
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    }
+  }
+  async loadBlockchainData() {
+    const web3 = window.web3
+    const accounts = await web3.eth.getAccounts()
+    this.setState({ account: accounts[0] })
+    const networkId = await web3.eth.net.getId()
+    // Load DaiToken
+    // const daiTokenData = DaiToken.networks[networkId]
+    console.log("HERE networkId", networkId)
+  }
 
   constructor(props) {
     super(props)
