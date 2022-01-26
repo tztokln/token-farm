@@ -88,9 +88,23 @@ describe("Token contract", function () {
 
             // Ensure that only onwer can issue tokens
             await expect(tokenFarm.connect(addr1).issueTokens()).to.be.reverted;
-            
-            // console.log("dai investor balance", await daiToken.balanceOf(addr1.address))
-            // console.log("dapp investor balance", await dappToken.balanceOf(addr1.address))
+
+            // Unstake tokens
+            await tokenFarm.connect(addr1).unstakeTokens()
+
+            // Check results after unstaking
+            result = await daiToken.balanceOf(addr1.address)
+            assert.equal(result.toString(), tokens('100'), 'investor Mock DAI wallet balance correct after staking')
+     
+            result = await daiToken.balanceOf(tokenFarm.address)
+            assert.equal(result.toString(), tokens('0'), 'Token Farm Mock DAI balance correct after staking')
+
+            result = await tokenFarm.stakingBalance(addr1.address)
+            assert.equal(result.toString(), tokens('0'), 'investor staking balance correct after staking')
+
+            result = await tokenFarm.isStaking(addr1.address)
+            assert.equal(result.toString(), 'false', 'investor staking status correct after staking')
+
         })
     })
 
