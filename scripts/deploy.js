@@ -28,7 +28,7 @@ async function main() {
   const TokenFarm = await hre.ethers.getContractFactory("TokenFarm");
   const tokenFarm = await TokenFarm.deploy(dappToken.address, daiToken.address);
   await tokenFarm.deployed();
-  saveTokenAddress(dappToken, 'TokenFarm');
+  saveTokenAddress(tokenFarm, 'TokenFarm');
   console.log("tokenFarm deployed to:", tokenFarm.address);
 
   const accounts = await ethers.getSigners();
