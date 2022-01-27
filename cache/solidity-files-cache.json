@@ -19,12 +19,19 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
               ],
               "": [
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": true
           }
         }
       },
@@ -34,41 +41,6 @@
       ],
       "artifacts": [
         "DaiToken"
-      ]
-    },
-    "/Users/elena/Desktop/defi_tutorial-starter-code/contracts/DappToken.sol": {
-      "lastModificationDate": 1642989060451,
-      "contentHash": "11af336cf17d45a4896b02c749020261",
-      "sourceName": "contracts/DappToken.sol",
-      "solcConfig": {
-        "version": "0.7.3",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.7.3"
-      ],
-      "artifacts": [
-        "DappToken"
       ]
     },
     "/Users/elena/Desktop/defi_tutorial-starter-code/contracts/TokenFarm.sol": {
@@ -89,12 +61,19 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
               ],
               "": [
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": true
           }
         }
       },
@@ -108,6 +87,48 @@
       ],
       "artifacts": [
         "TokenFarm"
+      ]
+    },
+    "/Users/elena/Desktop/defi_tutorial-starter-code/contracts/DappToken.sol": {
+      "lastModificationDate": 1642989060451,
+      "contentHash": "11af336cf17d45a4896b02c749020261",
+      "sourceName": "contracts/DappToken.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.7.3"
+      ],
+      "artifacts": [
+        "DappToken"
       ]
     },
     "/Users/elena/Desktop/defi_tutorial-starter-code/node_modules/hardhat/console.sol": {
@@ -128,12 +149,19 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
               ],
               "": [
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": true
           }
         }
       },

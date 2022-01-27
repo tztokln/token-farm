@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Web3 from 'web3'
 import Navbar from './Navbar'
+import DaiToken from '../contracts/DaiToken.sol/DaiToken.json'
+// import DappToken from '../contracts/DappToken.sol/DappToken.json'
+// import TokenFarm from '../contracts/TokenFarm.sol/TokenFarm.json'
+
 import './App.css'
 
 class App extends Component {
@@ -22,16 +26,24 @@ class App extends Component {
   }
   async loadBlockchainData() {
     const web3 = window.web3
-//     daiToken deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-// dappToken deployed to: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
-// tokenFarm deployed to: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
     const accounts = await web3.eth.getAccounts()
     this.setState({ account: accounts[0] })
-    const networkId = await web3.eth.net.getId()
-    // Load DaiToken
-    // const daiTokenData = DaiToken.networks[networkId]
 
-    // console.log("HERE tokenFarm", tokenFarm)
+    const networkId = await web3.eth.net.getId()
+
+    // Load DaiToken
+    const daiTokenContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+    if(DaiToken) {
+      const daiToken = new web3.eth.Contract(DaiToken.abi, daiTokenContractAddress)
+      this.setState({ daiToken })
+      let daiTokenBalance = await daiToken.methods.balanceOf(this.state.account).call()
+      this.setState({ daiTokenBalance: daiTokenBalance.toString() })
+
+      console.log("state", this.state  )
+
+    }
+
+    // console.log("HERE DaiToken", DaiToken)
   }
 
   constructor(props) {
@@ -63,7 +75,7 @@ class App extends Component {
                 >
                 </a>
 
-                <h1>Hello, World!</h1>
+                <h1>Hello!</h1>
 
               </div>
             </main>
