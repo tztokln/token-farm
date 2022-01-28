@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import DaiToken from '../contracts/DaiToken.sol/DaiToken.json'
 import DappToken from '../contracts/DappToken.sol/DappToken.json'
 import TokenFarm from '../contracts/TokenFarm.sol/TokenFarm.json'
+import Main from './Main'
 
 import './App.css'
 
@@ -28,8 +29,6 @@ class App extends Component {
     const web3 = window.web3
     const accounts = await web3.eth.getAccounts()
     this.setState({ account: accounts[0] })
-
-    // const networkId = await web3.eth.net.getId()
 
     // Load DaiToken
     const daiTokenContractAddress = DaiToken.contractAddress;
@@ -86,7 +85,27 @@ class App extends Component {
     }
   }
 
+  stakeTokens = async (amount) => {
+    this.setState({ loading: true })
+    await this.state.daiToken.methods.approve(this.state.tokenFarm._address, amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      console.log("HERE", this.state.tokenFarm.methods.stakeTokens(amount).send({ from: this.state.account }).on)
+    })
+    await this.state.tokenFarm.methods.stakeTokens(amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      console.log("HERE 1", this.state.tokenFarm._address);
+    })
+    await this.loadBlockchainData()
+  }
+
+  unstakeTokens = async (amount) => {
+    this.setState({ loading: true })
+    await this.state.tokenFarm.methods.unstakeTokens().send({ from: this.state.account }).on('transactionHash', (hash) => {
+      // this.setState({ loading: false })
+    })
+    await this.loadBlockchainData()
+  }
+
   render() {
+
     return (
       <div>
         <Navbar account={this.state.account} />
@@ -100,9 +119,18 @@ class App extends Component {
                   rel="noopener noreferrer"
                 >
                 </a>
-
-                <h1>Hello!</h1>
-
+                {
+                  this.state.loading ? (
+                    <p id="loader" className="text-center">Loading...</p>
+                  ) : (<Main
+                    daiTokenBalance={this.state.daiTokenBalance}
+                    dappTokenBalance={this.state.dappTokenBalance}
+                    stakingBalance={this.state.stakingBalance}
+                    stakeTokens={this.stakeTokens}
+                    unstakeTokens={this.unstakeTokens}
+                  />
+                  )
+                }
               </div>
             </main>
           </div>
