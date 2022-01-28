@@ -1,5 +1,6 @@
 async function main() {
-    const tokenFarmAddress = '0x5eb3Bc0a489C5A8288765d2336659EbCA68FCd00';
+    const deployedToken = require(`../artifacts/contracts/TokenFarm.sol/TokenFarm.json`);
+    const tokenFarmAddress = deployedToken.contractAddress;
     const TokenFarm = await ethers.getContractFactory('TokenFarm');
     const tokenFarm = await TokenFarm.attach(tokenFarmAddress);
     await tokenFarm.issueTokens()
